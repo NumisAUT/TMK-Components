@@ -1,0 +1,275 @@
+<div class="event-component">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+        .event-list {
+            font-family: Montserrat, sans-serif;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .event {
+            background-color: #fff;
+            border-radius: 8px;
+            border: 1px solid #E6E6E6;
+            padding-right: 24px;
+            gap: 24px;
+            display: flex;
+            align-items: center;
+            min-width: unset;
+            overflow: hidden;
+        }
+
+        .indicator {
+            width: 4px;
+            height: auto;
+            background-color: lightblue;
+            align-self: stretch;
+        }
+
+        .date-frame {
+            gap: 8px;
+        }
+
+        .date-day {
+            margin-bottom: 8px;
+            font-size: 32px;
+            line-height: 24px;
+            font-weight: 600;
+            color: #A1A6A9;
+        }
+
+        .date-month {
+            font-size: 14px;
+            color: #A1A6A9;
+        }
+
+        .event-location {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-top: 4px;
+        }
+
+        .info-frame {
+            padding: 24px 0px;
+            width: 100%;
+        }
+
+        .event-name {
+            color: #333;
+            font-size: 20px;
+        }
+
+        .location-name {
+            color: #BCBCBC;
+            gap: 4px;
+        }
+
+        .event.past {
+            opacity: 0.5;
+        }
+    </style>
+
+    <div class="event-list">
+        <!-- Events will be inserted here dynamically -->
+    </div>
+
+    <script>
+        const events = [
+            {
+                date: '2025-02-09',
+                name: 'Gemeindeschnalzen',
+                location: 'Loig',
+                indicator: '#6CB4EE'
+            },
+            {
+                date: '2025-03-01',
+                name: 'Faschingsumzug',
+                location: 'Siezenheim',
+                indicator: '#6CB4EE'
+            },
+            {
+                date: '2025-05-01',
+                name: 'Maibaumaufstellen',
+                location: 'Siezenheim',
+                indicator: '#EEDC82'
+            },
+            {
+                date: '2025-05-04',
+                name: 'Kirtag',
+                location: 'Siezenheim',
+                indicator: '#EEDC82'
+            },
+            {
+                date: '2025-05-29',
+                name: 'Erstkommunion',
+                location: 'Siezenheim',
+                indicator: '#EEDC82'
+            },
+            {
+                date: '2025-05-29',
+                name: 'Musikfest',
+                location: 'Steinbrünning',
+                indicator: '#EEDC82'
+            },
+            {
+                date: '2025-05-31',
+                name: 'Musikfest',
+                location: 'Oberndorf',
+                indicator: '#EEDC82'
+            },
+            {
+                date: '2025-06-08',
+                name: 'Firmung',
+                location: 'Siezenheim',
+                indicator: '#EEDC82'
+            },
+            {
+                date: '2025-06-13',
+                name: 'Bezirksmusikfest',
+                location: 'Michaelbeuern',
+                indicator: '#EEDC82'
+            },
+            {
+                date: '2025-06-14',
+                name: 'Schnalzermesse',
+                location: 'Loig',
+                indicator: '#EEDC82'
+            },
+            {
+                date: '2025-06-15',
+                name: 'Kirtag',
+                location: 'Loig',
+                indicator: '#EEDC82'
+            },
+            {
+                date: '2025-06-19',
+                name: 'Fronleichnam',
+                location: 'Siezenheim',
+                indicator: '#EEDC82'
+            },
+            {
+                date: '2025-06-22',
+                name: 'Schützenfest',
+                location: 'Wals',
+                indicator: '#50C878'
+            },
+            {
+                date: '2025-07-05',
+                name: 'Sommerkonzert',
+                location: 'Loig',
+                indicator: '#50C878'
+            },
+            {
+                date: '2025-07-12',
+                name: 'Bergmesse',
+                location: 'Pfarre Siezenheim',
+                indicator: '#50C878'
+            },
+            {
+                date: '2025-08-17',
+                name: 'Schützenfest',
+                location: 'Großgmain',
+                indicator: '#50C878'
+            },
+            {
+                date: '2025-09-05',
+                name: '135 Jahre TMK Siezenheim - Tag der Vereine',
+                location: 'Siezenheim',
+                indicator: '#50C878'
+            },
+            {
+                date: '2025-09-06',
+                name: '135 Jahre TMK Siezenheim - Festtag',
+                location: 'Siezenheim',
+                indicator: '#50C878'
+            },
+            {
+                date: '2025-09-28',
+                name: 'Erntedank',
+                location: 'Siezenheim',
+                indicator: '#FFBF00'
+            },
+            {
+                date: '2025-10-12',
+                name: 'Ehejubilare',
+                location: 'Siezenheim',
+                indicator: '#FFBF00'
+            },
+            {
+                date: '2025-11-22',
+                name: 'Cäciliakonzert',
+                location: 'Volksschule Siezenheim',
+                indicator: '#FFBF00'
+            },
+            {
+                date: '2025-12-07',
+                name: 'Adventfenster TMK + Kameraden',
+                location: 'Siezenheim',
+                indicator: '#FFBF00'
+            },
+            {
+                date: '2025-12-24',
+                name: 'Turmblasen',
+                location: 'Siezenheim',
+                indicator: '#6CB4EE'
+            },
+        ];
+
+        function createEventElement(event) {
+            const eventDate = new Date(event.date);
+            const isPast = eventDate < new Date();
+            
+            const monthNames = ['JAN', 'FEB', 'MÄR', 'APR', 'MAI', 'JUN', 
+                              'JUL', 'AUG', 'SEP', 'OKT', 'NOV', 'DEZ'];
+
+            const eventHTML = `
+                <div class="event ${isPast ? 'past' : ''}">
+                    <div class="indicator" style="background-color: ${event.indicator}">
+                    </div>
+                    <div class="date-frame">
+                        <div class="date-day">
+                            ${eventDate.getDate()}
+                        </div>
+                        <div class="date-month">
+                            ${monthNames[eventDate.getMonth()]}
+                        </div>
+                    </div>
+                    <div class="info-frame">
+                        <div class="event-name">
+                            ${event.name}
+                        </div>
+                        <div class="event-location">
+                            <div class="location-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                    stroke="#BCBCBC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                            </div>
+                            <div class="location-name">
+                                ${event.location}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            return eventHTML;
+        }
+
+        function renderEvents() {
+            const eventList = document.querySelector('.event-list');
+            eventList.innerHTML = events
+                .sort((a, b) => new Date(a.date) - new Date(b.date))
+                .map(event => createEventElement(event))
+                .join('');
+        }
+
+        renderEvents();
+    </script>
+</div>
